@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Theo Tuổi"
+        android:id="@+id/menuTuoi"
+        android:icon="@drawable/baseline_circle_24"/>
+    <item
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Theo Ngày"
+        android:id="@+id/menuNgay"
+        android:icon="@drawable/baseline_circle_24"/>
+    <item
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Settings"
+        android:id="@+id/menuSettings"
+        android:icon="@drawable/baseline_circle_24"/>
+</menu>

@@ -32,6 +32,7 @@ class screen2 : AppCompatActivity(),SensorEventListener {
         for (currentDegree in 0..350 step 10) {
             addIconAtDegree(currentDegree)
         }
+
     }
     private fun initData(){
         mSensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager?
@@ -85,15 +86,17 @@ class screen2 : AppCompatActivity(),SensorEventListener {
         layoutParams.bottomToBottom = binding.myConstraintIconGroup.id
         layoutParams.height = 30;
         layoutParams.width = 30;
-        var gap = 20
+        var gap = -10
 
-        var x0 = 15
-        var y0= -580
+        var x0 = -15
+        var y0= 600
         var x = x0 * cos(Math.toRadians(degree.toDouble())) - y0 * sin(Math.toRadians(degree.toDouble()));
         var y = x0 * sin(Math.toRadians(degree.toDouble())) - y0 * cos(Math.toRadians(degree.toDouble()));
-        layoutParams.leftMargin = x.toInt() - gap
-        layoutParams.topMargin = -y.toInt() - gap
-
+        layoutParams.leftMargin = x.toInt() - gap/2
+        layoutParams.topMargin = -y.toInt() - gap*2
+        if(degree == 180){
+            Toast.makeText(this, "x:${x}, y:${y}",Toast.LENGTH_LONG).show()
+        }
         binding.myConstraintIconGroup.addView(icon, layoutParams)
     }
 
