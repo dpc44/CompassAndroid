@@ -59,9 +59,9 @@ class Screen2Fragment : Fragment(R.layout.fragment_screen2), SensorEventListener
         binding.textView2.text = "$chiCanName - $selectedYear"
 
 
-        for (currentDegree in 0..350 step 10) {
-            addIconAtDegree(currentDegree)
-        }
+        addIconAtDegree(30, 1)
+        addIconAtDegree(250, 0)
+        addIconAtDegree(180, 2)
     }
 
     private fun initData() {
@@ -101,12 +101,19 @@ class Screen2Fragment : Fragment(R.layout.fragment_screen2), SensorEventListener
 
     override fun onAccuracyChanged(p0: Sensor?, p1: Int) {}
 
-    private fun addIconAtDegree(degree: Int) {
+    private fun addIconAtDegree(degree: Int, type:Int) {
         if (degree > 350 || degree < 0) {
             return
         }
         val icon = ImageView(requireContext())
-        icon.setImageResource(R.mipmap.ic_launcher_round)
+        if(type == 0){
+            icon.setImageResource(R.mipmap.ic_launcher_round)
+        }
+        else if (type == 1){
+            icon.setImageResource(R.drawable.baseline_self_improvement_24)
+        }else{
+            icon.setImageResource(R.drawable.money)
+        }
 
         val layoutParams = ConstraintLayout.LayoutParams(
             ViewGroup.LayoutParams.WRAP_CONTENT,
