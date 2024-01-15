@@ -14,6 +14,7 @@ import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.laban.ExternalFunctions.LunarSolar
 import com.example.laban.databinding.FragmentScreen2Binding
 import java.lang.Math.cos
 import java.lang.Math.sin
@@ -33,6 +34,7 @@ class Screen2Fragment : Fragment(R.layout.fragment_screen2), SensorEventListener
     private var mSensorManager: SensorManager? = null
     private var _binding: FragmentScreen2Binding? = null
     private val binding get() = _binding!!
+    private val lunarSolar = LunarSolar;
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +47,18 @@ class Screen2Fragment : Fragment(R.layout.fragment_screen2), SensorEventListener
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initData()
+
+        val arguments = arguments
+
+        val selectedDay = arguments!!.getInt("selectedDay", 0)
+        val selectedMonth = arguments!!.getInt("selectedMonth", 0)
+        val selectedYear = arguments!!.getInt("selectedYear", 0)
+
+
+        val chiCanName =  lunarSolar.getLunarYearName(selectedYear);
+        binding.textView2.text = "$chiCanName - $selectedYear"
+
+
         for (currentDegree in 0..350 step 10) {
             addIconAtDegree(currentDegree)
         }
@@ -104,17 +118,15 @@ class Screen2Fragment : Fragment(R.layout.fragment_screen2), SensorEventListener
         layoutParams.bottomToBottom = binding.myConstraintIconGroup.id
         layoutParams.height = 30
         layoutParams.width = 30
-        var gap = -10
 
+        var gap = -10
         var x0 = -15
         var y0 = 600
-        var x =
-            x0 * cos(Math.toRadians(degree.toDouble())) - y0 * sin(Math.toRadians(degree.toDouble()));
-        var y =
-            x0 * sin(Math.toRadians(degree.toDouble())) - y0 * cos(Math.toRadians(degree.toDouble()));
+        var x =x0 * cos(Math.toRadians(degree.toDouble())) - y0 * sin(Math.toRadians(degree.toDouble()));
+        var y =x0 * sin(Math.toRadians(degree.toDouble())) - y0 * cos(Math.toRadians(degree.toDouble()));
+
         layoutParams.leftMargin = x.toInt() - gap / 2
         layoutParams.topMargin = -y.toInt() - gap * 2
-
         binding.myConstraintIconGroup.addView(icon, layoutParams)
     }
 

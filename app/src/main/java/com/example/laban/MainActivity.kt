@@ -43,7 +43,7 @@ class MainActivity<NumberPicker> : AppCompatActivity() {
 
         val bundle = Bundle()
         bundle.putInt("selectedDay", selectedDay)
-        bundle.putInt("selectedMonth", selectedMonth)
+        bundle.putInt("selectedMonth", selectedMonth+1)
         bundle.putInt("selectedYear", selectedYear)
         val intent = Intent(this, screen2::class.java)
         intent.putExtras(bundle);

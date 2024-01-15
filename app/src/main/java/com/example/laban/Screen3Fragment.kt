@@ -14,8 +14,8 @@ import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.example.laban.databinding.FragmentScreen2Binding
 import com.example.laban.databinding.FragmentScreen3Binding
+import com.example.laban.ExternalFunctions.LunarSolar
 import java.util.Calendar
 
 // TODO: Rename parameter arguments, choose names that match
@@ -34,7 +34,7 @@ class Screen3Fragment : Fragment(R.layout.fragment_screen3), SensorEventListener
     val today = Calendar.getInstance()
     private var _binding: FragmentScreen3Binding? = null
     private val binding get() = _binding!!
-
+    private val lunarSolar = LunarSolar;
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,6 +46,10 @@ class Screen3Fragment : Fragment(R.layout.fragment_screen3), SensorEventListener
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initData()
+        val arguments = arguments
+        val selectedDay = arguments!!.getInt("selectedDay", 0)
+        val selectedMonth = arguments!!.getInt("selectedMonth", 0)
+        val selectedYear = arguments!!.getInt("selectedYear", 0)
 
         binding.txtHyThan.text = "Hỷ Thần : 0.123";
         binding.txtTaiThan.text ="Tài Thần : 0.123";
