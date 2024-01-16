@@ -6,6 +6,7 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -70,7 +71,6 @@ class Screen2Fragment : Fragment(R.layout.fragment_screen2), SensorEventListener
 
     override fun onResume() {
         super.onResume()
-
         mSensorManager?.registerListener(
             this,
             mSensorManager?.getDefaultSensor(Sensor.TYPE_ORIENTATION),
